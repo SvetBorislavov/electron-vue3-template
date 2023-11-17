@@ -1,4 +1,3 @@
-import devtools from '@vue/devtools';
 import { createApp } from 'vue';
 
 import './style.css';
@@ -10,5 +9,7 @@ const app = createApp(App);
 app.mount('#app');
 
 if (window.electronAPI.getNodeEnv() === 'development') {
-  devtools.connect(`http://localhost`);
+  import('@vue/devtools').then((module) => {
+    module.connect(`http://localhost`);
+  });
 }
