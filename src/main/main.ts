@@ -1,5 +1,13 @@
 import { app, BrowserWindow, session } from 'electron';
-import { join } from 'path';
+import { join, resolve } from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config({
+  path: app.isPackaged
+    ? join(process.resourcesPath, '.env')
+    : resolve(process.cwd(), '.env'),
+  override: true,
+});
 
 let mainWindow;
 
