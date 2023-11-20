@@ -2,6 +2,8 @@ import { app, BrowserWindow, session } from 'electron';
 import { join, resolve } from 'path';
 import dotenv from 'dotenv';
 
+import createMenu from './menu';
+
 dotenv.config({
   path: app.isPackaged
     ? join(process.resourcesPath, '.env')
@@ -36,6 +38,8 @@ function createWindow() {
 }
 
 app.on('ready', () => {
+  createMenu();
+
   createWindow();
 
   if (process.env.NODE_ENV === 'production') {
